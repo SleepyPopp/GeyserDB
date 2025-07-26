@@ -1,6 +1,6 @@
 type: text
 title: How to Know What Mods Are Compatible With Geyser (Excluding Hydraulic)
-color: neutral
+color: green
 button: [Modrinth](https://modrinth.com/mods/)
 
 ---

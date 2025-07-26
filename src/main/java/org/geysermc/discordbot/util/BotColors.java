@@ -31,7 +31,14 @@ public enum BotColors {
     NEUTRAL("#2B5797"),
     SUCCESS("#4CAF50"),
     FAILURE("#FF0000"),
-    WARNING("#FF8C00");
+    WARNING("#FF8C00"),
+    GREEN("#1ad86a"),
+    BLUE("#4ec2f7"),
+    YELLOW("#fecb3b"),
+    PINK("#424872"),
+    CORAL("#fe6e61"),
+    PURPLE("#9d58b7"),
+    WHITE("#fefefe");
 
     private final Color color;
 

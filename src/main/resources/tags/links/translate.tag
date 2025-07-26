@@ -1,5 +1,5 @@
 type: text
-color: success
+color: pink
 title: :link: Translating Geyser
 button: [Crowdin](https://translate.geysermc.org/)
 
