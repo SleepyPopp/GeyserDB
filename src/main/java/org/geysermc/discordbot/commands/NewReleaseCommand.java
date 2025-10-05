@@ -39,6 +39,8 @@ import java.util.List;
 
 public class NewReleaseCommand extends FilteredSlashCommand {
 
+    private static final String VERSION_REGEX = "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$";
+
     public NewReleaseCommand() {
         this.name = "newrelease";
         this.arguments = "<version> <preview> <viaversion>";
@@ -58,6 +60,12 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         boolean preview = event.getOption("preview").getAsBoolean();
         boolean viaversion = event.getOption("viaversion").getAsBoolean();
 
+        if (!isValidVersion(version)) {
+            event.replyEmbeds(MessageHelper.errorResponse(null, "Invalid version format",
+                    "The version must be in the format `X.X` or `X.X.X` (e.g. 1.21 or 1.21.9).")).queue();
+            return;
+        }
+
         event.replyEmbeds(handle(version, preview, viaversion)).queue();
     }
 
@@ -71,10 +79,20 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         }
 
         String version = args[0];
+        if (!isValidVersion(version)) {
+            MessageHelper.errorResponse(event, "Invalid version format",
+                    "The version must be in the format `X.X` or `X.X.X` (e.g. 1.21 or 1.21.9).");
+            return;
+        }
+
         boolean preview = Boolean.parseBoolean(args[1]);
         boolean viaversion = Boolean.parseBoolean(args[2]);
 
         event.getMessage().replyEmbeds(handle(version, preview, viaversion)).queue();
+    }
+
+    private boolean isValidVersion(String version) {
+        return version.matches(VERSION_REGEX);
     }
 
     private MessageEmbed handle(String version, boolean preview, boolean viaversion) {
