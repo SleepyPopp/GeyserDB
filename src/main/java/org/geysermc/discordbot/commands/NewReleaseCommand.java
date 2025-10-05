@@ -113,7 +113,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
                     "On aternos, to get the preview, install \"GeyserMC Preview\" from the plugins or mods tab.\n\n" +
                     "Alternatively, you can use ViaVersion + ViaBackwards on release Geyser builds, but keep in mind, " +
                     "due to how ViaBackwards works, " + version + " features will show with hacky workarounds on Bedrock. " +
-                    "Such as copper golems appearing as a frog named \"Copper Golem\" before Geyser's 1.21.9 release.";
+                    "For example, copper golems appeared as a frog named \"Copper Golem\" before Geyser's 1.21.9 release.";
         } else { // only viaversion true
             message = "You can use ViaVersion + ViaBackwards to support " + version + ", but keep in mind, " +
                     "due to how ViaBackwards works, " + version + " features will show with hacky workarounds on Bedrock. " +
