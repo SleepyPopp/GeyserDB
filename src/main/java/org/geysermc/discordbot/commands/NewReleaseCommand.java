@@ -44,13 +44,13 @@ public class NewReleaseCommand extends FilteredSlashCommand {
     public NewReleaseCommand() {
         this.name = "newrelease";
         this.arguments = "<version> <preview> <viaversion>";
-        this.help = "Check Geyser support status for the latest Java release";
+        this.help = "Spam this when Geyser doesn't support a new release, or if it works with the preview and/or viabackwards";
         this.guildOnly = false;
 
         this.options = List.of(
                 new OptionData(OptionType.STRING, "version", "The latest Java release (e.g. 1.21.9)", true),
                 new OptionData(OptionType.BOOLEAN, "preview", "Has the Geyser Preview released for this version?", true),
-                new OptionData(OptionType.BOOLEAN, "viaversion", "Have ViaVersion + ViaBackwards updated for this version?", true)
+                new OptionData(OptionType.BOOLEAN, "viaversion", "Has ViaVersion + ViaBackwards updated for this version?", true)
         );
     }
 
@@ -113,15 +113,15 @@ public class NewReleaseCommand extends FilteredSlashCommand {
                     "On aternos, to get the preview, install \"GeyserMC Preview\" from the plugins or mods tab.\n\n" +
                     "Alternatively, you can use ViaVersion + ViaBackwards on release Geyser builds, but keep in mind, " +
                     "due to how ViaBackwards works, " + version + " features will show with hacky workarounds on Bedrock. " +
-                    "Such as copper golems being a frog named \"Copper Golem\" while 1.21.9 was still in development.";
+                    "Such as copper golems appearing as a frog named \"Copper Golem\" before Geyser's 1.21.9 release.";
         } else { // only viaversion true
-            message = "You can use ViaVersion + ViaBackwards on release Geyser builds, but keep in mind, " +
+            message = "You can use ViaVersion + ViaBackwards to support " + version + ", but keep in mind, " +
                     "due to how ViaBackwards works, " + version + " features will show with hacky workarounds on Bedrock. " +
-                    "Such as copper golems being a frog named \"Copper Golem\" while 1.21.9 was still in development.";
+                    "For example, copper golems appeared as a frog named \"Copper Golem\" before Geyser's 1.21.9 release.";
         }
 
         embed.setDescription(message);
-        embed.setColor(BotColors.SUCCESS.getColor());
+        embed.setColor(BotColors.FAILURE.getColor());
         return embed.build();
     }
 }
