@@ -1,0 +1,82 @@
+package org.geysermc.discordbot.commands;
+
+import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.command.SlashCommandEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import org.geysermc.discordbot.commands.filter.FilteredSlashCommand;
+import org.geysermc.discordbot.util.BotColors;
+import org.geysermc.discordbot.util.MessageHelper;
+
+import java.util.List;
+
+public class NewReleaseCommand extends FilteredSlashCommand {
+
+    public NewReleaseCommand() {
+        this.name = "newrelease";
+        this.arguments = "<version> <preview> <viaversion>";
+        this.help = "Check Geyser support status for the latest Java release";
+        this.guildOnly = false;
+
+        this.options = List.of(
+                new OptionData(OptionType.STRING, "version", "The latest Java release (e.g. 1.21.9)", true),
+                new OptionData(OptionType.BOOLEAN, "preview", "Has the Geyser Preview released for this version?", true),
+                new OptionData(OptionType.BOOLEAN, "viaversion", "Have ViaVersion + ViaBackwards updated for this version?", true)
+        );
+    }
+
+    @Override
+    protected void executeFiltered(SlashCommandEvent event) {
+        String version = event.getOption("version").getAsString();
+        boolean preview = event.getOption("preview").getAsBoolean();
+        boolean viaversion = event.getOption("viaversion").getAsBoolean();
+
+        event.replyEmbeds(handle(version, preview, viaversion)).queue();
+    }
+
+    @Override
+    protected void execute(CommandEvent event) {
+        String[] args = event.getArgs().split(" ");
+        if (args.length < 3) {
+            MessageHelper.errorResponse(event, "Invalid usage",
+                    "Usage: `" + event.getPrefix() + name + " <version> <preview:true/false> <viaversion:true/false>`");
+            return;
+        }
+
+        String version = args[0];
+        boolean preview = Boolean.parseBoolean(args[1]);
+        boolean viaversion = Boolean.parseBoolean(args[2]);
+
+        event.getMessage().replyEmbeds(handle(version, preview, viaversion)).queue();
+    }
+
+    private MessageEmbed handle(String version, boolean preview, boolean viaversion) {
+        EmbedBuilder embed = new EmbedBuilder();
+        embed.setTitle("Geyser Support for " + version);
+
+        String message;
+
+        if (!preview && !viaversion) {
+            message = "Geyser does not currently support " + version + ", please wait patiently!";
+        } else if (preview && !viaversion) {
+            message = "You can use the Geyser Preview at <#1230530815918866453> to support " + version + ".\n" +
+                    "On aternos, to get the preview, install \"GeyserMC Preview\" from the plugins or mods tab.";
+        } else if (preview && viaversion) {
+            message = "You can use the Geyser Preview at <#1230530815918866453> to support " + version + ".\n" +
+                    "On aternos, to get the preview, install \"GeyserMC Preview\" from the plugins or mods tab.\n\n" +
+                    "Alternatively, you can use ViaVersion + ViaBackwards on release Geyser builds, but keep in mind, " +
+                    "due to how ViaBackwards works, " + version + " features will show with hacky workarounds on Bedrock. " +
+                    "Such as copper golems being a frog named \"Copper Golem\" while 1.21.9 was still in development.";
+        } else { // only viaversion true
+            message = "You can use ViaVersion + ViaBackwards on release Geyser builds, but keep in mind, " +
+                    "due to how ViaBackwards works, " + version + " features will show with hacky workarounds on Bedrock. " +
+                    "Such as copper golems being a frog named \"Copper Golem\" while 1.21.9 was still in development.";
+        }
+
+        embed.setDescription(message);
+        embed.setColor(BotColors.SUCCESS.getColor());
+        return embed.build();
+    }
+}
