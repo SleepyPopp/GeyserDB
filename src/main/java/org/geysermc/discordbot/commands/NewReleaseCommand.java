@@ -44,7 +44,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
     public NewReleaseCommand() {
         this.name = "newrelease";
         this.arguments = "<version> <preview> <viaversion>";
-        this.help = "Spam this when Geyser doesn't support a new release, or if it works with the preview and/or viabackwards";
+        this.help = "Spam this when Geyser doesn’t support a new release, or if it works with the preview/viabackwards";
         this.guildOnly = false;
 
         this.options = List.of(
