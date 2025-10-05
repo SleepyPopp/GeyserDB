@@ -39,7 +39,8 @@ import java.util.List;
 
 public class NewReleaseCommand extends FilteredSlashCommand {
 
-    private static final String VERSION_REGEX = "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$";
+    // Enforces: 1.<two digits, no leading 0>[.<one or two digits, no leading 0>]?
+    private static final String VERSION_REGEX = "^1\\.[1-9][0-9](\\.[1-9][0-9]?)?$";
 
     public NewReleaseCommand() {
         this.name = "newrelease";
@@ -62,7 +63,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
 
         if (!isValidVersion(version)) {
             event.replyEmbeds(MessageHelper.errorResponse(null, "Invalid version format",
-                    "The version must be in the format `X.X` or `X.X.X` (e.g. 1.21 or 1.21.9)."))
+                    "The version must be `1.XX` or `1.XX.X/XX` (e.g. 1.21 or 1.21.9). Leading zeros are not allowed."))
                     .setEphemeral(true)
                     .queue();
             return;
@@ -83,7 +84,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         String version = args[0];
         if (!isValidVersion(version)) {
             MessageHelper.errorResponse(event, "Invalid version format",
-                    "The version must be in the format `X.X` or `X.X.X` (e.g. 1.21 or 1.21.9).");
+                    "The version must be `1.XX` or `1.XX.X/XX` (e.g. 1.21 or 1.21.9). Leading zeros are not allowed.");
             return;
         }
 
