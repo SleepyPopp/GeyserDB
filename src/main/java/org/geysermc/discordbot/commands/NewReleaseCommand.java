@@ -63,7 +63,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         if (!isValidVersion(version)) {
             event.replyEmbeds(MessageHelper.errorResponse(null, "Invalid version format",
                     "The version must be in the format `X.X` or `X.X.X` (e.g. 1.21 or 1.21.9)."))
-                    .setEphemeral(true) // 👈 only visible to the user
+                    .setEphemeral(true)
                     .queue();
             return;
         }
