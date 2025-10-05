@@ -121,7 +121,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         }
 
         embed.setDescription(message);
-        embed.setColor(BotColors.FAILURE.getColor());
+        embed.setColor(BotColors.SUCCESS.getColor());
         return embed.build();
     }
 }
