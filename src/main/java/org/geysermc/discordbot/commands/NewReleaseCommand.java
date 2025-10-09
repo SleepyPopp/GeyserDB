@@ -49,7 +49,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         this.guildOnly = false;
 
         this.options = List.of(
-                new OptionData(OptionType.STRING, "version", "The latest Java release (e.g. 1.21.9)", true),
+                new OptionData(OptionType.STRING, "version", "The latest Java release (e.g. 1.21.9 or 1.21.9/1.21.10)", true),
                 new OptionData(OptionType.BOOLEAN, "preview", "Has the Geyser Preview released for this version?", true),
                 new OptionData(OptionType.BOOLEAN, "viaversion", "Has ViaVersion + ViaBackwards updated for this version?", true)
         );
@@ -63,7 +63,7 @@ public class NewReleaseCommand extends FilteredSlashCommand {
 
         if (!isValidVersion(version)) {
             event.replyEmbeds(MessageHelper.errorResponse(null, "Invalid version format",
-                    "The version must be `1.XX` or `1.XX.X/XX` (e.g. 1.21 or 1.21.9). Leading zeros are not allowed."))
+                    "The version must be `1.XX` or `1.XX.X` (e.g. 1.21 or 1.21.9), or a pair like `1.21.9/1.21.10`. Leading zeros are not allowed."))
                     .setEphemeral(true)
                     .queue();
             return;
@@ -77,14 +77,14 @@ public class NewReleaseCommand extends FilteredSlashCommand {
         String[] args = event.getArgs().split(" ");
         if (args.length < 3) {
             MessageHelper.errorResponse(event, "Invalid usage",
-                    "Usage: `" + event.getPrefix() + name + " <version> <preview:true/false> <viaversion:true/false>`");
+                    "Usage: `" + event.getPrefix() + name + " <version or version/version+1> <preview:true/false> <viaversion:true/false>`");
             return;
         }
 
         String version = args[0];
         if (!isValidVersion(version)) {
             MessageHelper.errorResponse(event, "Invalid version format",
-                    "The version must be `1.XX` or `1.XX.X/XX` (e.g. 1.21 or 1.21.9). Leading zeros are not allowed.");
+                    "The version must be `1.XX` or `1.XX.X` (e.g. 1.21 or 1.21.9), or a pair like `1.21.9/1.21.10`. Leading zeros are not allowed.");
             return;
         }
 
@@ -95,7 +95,43 @@ public class NewReleaseCommand extends FilteredSlashCommand {
     }
 
     private boolean isValidVersion(String version) {
-        return version.matches(VERSION_REGEX);
+        // Single version
+        if (version.matches(VERSION_REGEX)) {
+            return true;
+        }
+
+        // Pair of versions separated by "/"
+        if (version.contains("/")) {
+            String[] parts = version.split("/");
+            if (parts.length != 2) return false;
+
+            String v1 = parts[0];
+            String v2 = parts[1];
+
+            if (!v1.matches(VERSION_REGEX) || !v2.matches(VERSION_REGEX)) {
+                return false;
+            }
+
+            // Parse into segments
+            String[] seg1 = v1.split("\\.");
+            String[] seg2 = v2.split("\\.");
+
+            // Must have patch segment
+            if (seg1.length != 3 || seg2.length != 3) return false;
+
+            // Major and minor must match
+            if (!seg1[0].equals(seg2[0]) || !seg1[1].equals(seg2[1])) return false;
+
+            try {
+                int patch1 = Integer.parseInt(seg1[2]);
+                int patch2 = Integer.parseInt(seg2[2]);
+                return patch2 == patch1 + 1;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     private MessageEmbed handle(String version, boolean preview, boolean viaversion) {
