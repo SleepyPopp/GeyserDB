@@ -1,5 +1,5 @@
 type: text
-aliases: mpconnectionfailed, mpconnect, unabletoconnect, unabletoconnecttoworld
+aliases: mpconnectionfailed, mpconnectfailed, mpconnectfail, mpconnect, unabletoconnect, unabletoconnecttoworld
 title: :x: Multiplayer Connection Failed
 issues: Unable to connect to world, Multiplayer connection failed
 color: errors
