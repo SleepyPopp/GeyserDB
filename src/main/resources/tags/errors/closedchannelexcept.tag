@@ -1,4 +1,5 @@
 type: text
+aliases: closechannelexception, closedchannelexc
 title: :x: ClosedChannelException
 issues: ClosedChannelException
 color: errors
