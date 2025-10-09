@@ -13,3 +13,7 @@ Note that if `clone-remote-port=true` in geyser config, then your bedrock port w
 - If you are self-hosting, we recommend using playit.gg which can be used to bypass port forwarding.
         **└>** If you are already using playit.gg, run `!!playitdebug`
 Additionally, there are various fixes for this on our wiki, which you can get to using the [Wiki page](https://wiki.geysermc.org/geyser/fixing-unable-to-connect-to-world/).
+
+// test
+- 1201023
+        - 21312
