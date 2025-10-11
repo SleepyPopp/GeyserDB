@@ -6,6 +6,6 @@ button: [Bedrock Player Management Plugin](https://www.spigotmc.org/resources/be
 
 ---
 
-You can allow Bedrock players to bypass the anticheat or run commands on player join for your server with the Bedrock Player Management plugin (linked below).
-For anticheat you can set it up to exempt them either from all checks or the ones that cause problems on join.
-Note that this plugin is unofficial and not related to GeyserMC.
+You can allow Bedrock players to bypass the anticheat or run commands on player join for your server with the Bedrock Player Management plugin.
+└> This plugin is unofficial and not related to GeyserMC.
+└> For anticheat, you can set it up to exempt them either from all checks or the ones that cause problems on join.
