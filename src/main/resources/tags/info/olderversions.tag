@@ -9,5 +9,5 @@ button: [Which version of Minecraft should your server use?](https://madelinemil
 
 Geyser currently only officially supports servers running on 1.16.5 or higher. If the server is below the latest version of the game then ViaVersion must also be installed.
 
-You can still join servers below 1.16.5 if you run Geyser on ViaProxy, or if you install ViaVersion on the server and use a proxy such as Velocity or the Standalone platform, but keep in mind that you likely won't get support on these versions irregardless of how you're running it.
+You can still join servers below 1.16.5 by running Geyser on ViaProxy, or by installing ViaVersion on the server while using a proxy like Velocity or Standalone. However, support for these versions is unlikely regardless of setup.
 Versions like 1.8 are over a decade old, and we highly recommend updating to a later version of the game. Read the post below for more information regarding which version is best for you.
