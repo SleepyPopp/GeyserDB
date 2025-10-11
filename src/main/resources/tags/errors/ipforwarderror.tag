@@ -1,5 +1,6 @@
 type: text
 title: :x: IP Forwarding Error
+aliases: ipforward
 issues: please enable it in your BungeeCord config as well
 color: errors
 
