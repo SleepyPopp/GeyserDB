@@ -5,7 +5,7 @@ color: help
 
 ---
 
-When using Geyser as a plugin, the IP is usually the same as your Java server's ip.
+When using Geyser as a plugin, the IP is usually the same as your Java server's IP.
 
 That being said, there are a few other Geyser-related services that have their own IP:
 
