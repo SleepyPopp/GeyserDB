@@ -1,7 +1,7 @@
 type: text
 title: :penguin: Minecraft: Bedrock Edition on Linux
 color: links
-button: [Download (Flatpak)](https://flathub.org/apps/io.mrarm.mcpelauncher)
+button: [Download Flatpak](https://flathub.org/apps/io.mrarm.mcpelauncher)
 
 ---
 
