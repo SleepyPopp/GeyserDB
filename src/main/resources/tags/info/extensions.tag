@@ -10,5 +10,5 @@ Geyser Extensions are similar to plugins, but specifically for Geyser, regardles
 You can use the link below to find a list of some Geyser extensions.
 
 **Installing extensions**:
-- Put the .jar file in Geyser`s 'extensions' folder
+- Put the .jar file in Geyser`s `extensions` folder
 - Restart the server.
