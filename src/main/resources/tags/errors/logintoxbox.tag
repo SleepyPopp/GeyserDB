@@ -5,9 +5,7 @@ color: errors
 
 ---
 
-This happens when Geyser can’t validate your login, often due to the client not sending the right data or not being logged in.
-
-**You can use the following steps to debug this:**
+This happens when Geyser can’t validate your login, often due to the client not sending the right data or not being logged in. You can use the following steps to debug this:
 1. Double check you are actually logged in.
 2. Restart your game and try again.
 3. Try joining a featured server:
