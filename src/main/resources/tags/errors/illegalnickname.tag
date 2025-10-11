@@ -1,6 +1,6 @@
 type: text
 title: :x: Illegal Nickname
-issues: illegal nickname
+issues: illegal nickname || invalid nickname
 aliases: invalidnickname, invalidnick, illegalnick
 color: errors
 
