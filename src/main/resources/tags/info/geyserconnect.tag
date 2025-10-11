@@ -4,6 +4,7 @@ title: :information_source: GeyserConnect
 color: info
 
 ---
+GeyserConnect allows you to connect to most Java servers from Bedrock without having to install anything on the server.
 
 There is an **Unofficial** public [GeyserConnect](https://github.com/GeyserMC/GeyserConnect) instance running. You can connect to it via
 *Addresses:* 
