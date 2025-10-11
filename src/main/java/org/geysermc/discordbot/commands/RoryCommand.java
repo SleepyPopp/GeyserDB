@@ -69,12 +69,11 @@ public class RoryCommand extends SlashCommand {
         }
 
         return new EmbedBuilder()
-                .setTitle(":cat: Here’s a random Rory image:")
+                .setTitle(":cat: Here’s A Random Rory Image:")
                 .setImage(result.getString("url"))
                 .setFooter("Cat ID: " + result.getInt("id") + " • Powered by rory.cat")
                 .setTimestamp(Instant.now())
                 .setColor(BotColors.SUCCESS.getColor())
                 .build();
-
     }
 }
